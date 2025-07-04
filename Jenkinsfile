@@ -7,23 +7,30 @@ pipeline {
     }
 
     stages {
+        stage('Debug Env Vars') {
+            steps {
+                sh 'echo DOCKER_IMAGE is: $DOCKER_IMAGE'
+                sh 'echo REGISTRY is: $REGISTRY'
+            }
+        }
+
         stage('Build') {
             steps {
-                sh 'docker build -t $DOCKER_IMAGE .'
+                sh "docker build --no-cache -t $DOCKER_IMAGE ."
             }
         }
 
         stage('Test') {
             steps {
-                sh 'pytest tests/'
+                sh "docker run --rm $DOCKER_IMAGE pytest tests/"
             }
         }
 
         stage('Push Image') {
             steps {
                 withDockerRegistry([credentialsId: 'dockerhub-cred', url: "https://$REGISTRY"]) {
-                    sh 'docker tag $DOCKER_IMAGE $REGISTRY/$DOCKER_IMAGE'
-                    sh 'docker push $REGISTRY/$DOCKER_IMAGE'
+                    sh "docker tag $DOCKER_IMAGE $REGISTRY/$DOCKER_IMAGE"
+                    sh "docker push $REGISTRY/$DOCKER_IMAGE"
                 }
             }
         }
