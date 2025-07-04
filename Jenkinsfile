@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'jenkins-test:latest'
-        REGISTRY = 'docker.io/jmpires'  // Replace this with your actual Docker Hub username or registry URL
+        REGISTRY = 'docker.io/jmpires'  // Your Docker Hub username
     }
 
     stages {
@@ -28,9 +28,9 @@ pipeline {
 
         stage('Push Image') {
             steps {
-                withDockerRegistry([credentialsId: 'dockerhub-cred', url: "https://$REGISTRY"]) {
-                    sh "docker tag $DOCKER_IMAGE $REGISTRY/$DOCKER_IMAGE"
-                    sh "docker push $REGISTRY/$DOCKER_IMAGE"
+                withDockerRegistry(credentialsId: 'dockerhub-cred', url: 'https://index.docker.io/v1/') {
+                    sh "docker tag $DOCKER_IMAGE ${REGISTRY}/${DOCKER_IMAGE}"
+                    sh "docker push ${REGISTRY}/${DOCKER_IMAGE}"
                 }
             }
         }
@@ -38,12 +38,12 @@ pipeline {
         stage('Deploy') {
             steps {
                 sshagent(['deploy-key']) {
-                    sh '''
-                    ssh user@server "docker pull $REGISTRY/$DOCKER_IMAGE && \
+                    sh """
+                    ssh user@server "docker pull ${REGISTRY}/${DOCKER_IMAGE} && \
                     docker stop myapp || true && \
                     docker rm myapp || true && \
-                    docker run -d --name myapp -p 80:80 $REGISTRY/$DOCKER_IMAGE"
-                    '''
+                    docker run -d --name myapp -p 80:80 ${REGISTRY}/${DOCKER_IMAGE}"
+                    """
                 }
             }
         }
