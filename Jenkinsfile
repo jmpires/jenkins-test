@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'jenkins-test:latest'
-        REGISTRY = 'docker.io/yourdockeruser'  // Replace this with your actual Docker Hub username or registry URL
+        REGISTRY = 'docker.io/jmpires'  // Replace this with your actual Docker Hub username or registry URL
     }
 
     stages {
