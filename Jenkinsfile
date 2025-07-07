@@ -3,11 +3,10 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'jenkins-test:latest'
-        REGISTRY = 'docker.io/jmpires'  // Your Docker Hub username
-        // DEPLOY = 'jmpires@localhost'  // SSH user for deployment (optional)
+        REGISTRY = 'docker.io/jmpires'
     }
 
-
+    stages {
         stage('Debug Env Vars') {
             steps {
                 sh 'echo DOCKER_IMAGE is: $DOCKER_IMAGE'
