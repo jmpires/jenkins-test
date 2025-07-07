@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'jenkins-test:latest'
         REGISTRY = 'docker.io/jmpires'  // Your Docker Hub username
+        DEPLOY = 'jmpires@localhost'  // SSH user for deployment
     }
 
     stages {
@@ -39,7 +40,7 @@ pipeline {
             steps {
                 sshagent(['deploy-key']) {
                     sh """
-                    ssh user@server "docker pull ${REGISTRY}/${DOCKER_IMAGE} && \
+                    ssh ${DEPLOY} "docker pull ${REGISTRY}/${DOCKER_IMAGE} && \
                     docker stop myapp || true && \
                     docker rm myapp || true && \
                     docker run -d --name myapp -p 80:80 ${REGISTRY}/${DOCKER_IMAGE}"
