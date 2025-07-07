@@ -3,7 +3,8 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'jenkins-test:latest'
-        REGISTRY = 'docker.io/jmpires' // Your Docker Hub username
+        REGISTRY = 'docker.io/jmpires'  // Your Docker Hub username
+        // DEPLOY = 'jmpires@localhost'  // SSH user for deployment (optional)
     }
 
     stages {
