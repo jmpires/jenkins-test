@@ -1,10 +1,17 @@
 pipeline {
     agent any
+    
+    stages {
+        stage('Clean') {
+            steps {
+                cleanWs()
+            }
+        }
 
     environment {
         DOCKER_IMAGE = 'jenkins-test:latest'
         REGISTRY = 'docker.io/jmpires'  // Your Docker Hub username
-        # DEPLOY = 'jmpires@localhost'  // SSH user for deployment
+
     }
 
     stages {
