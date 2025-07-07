@@ -1,6 +1,11 @@
 pipeline {
     agent any
-    
+
+    environment {
+        DOCKER_IMAGE = 'jenkins-test:latest'
+        REGISTRY = 'docker.io/jmpires' // Your Docker Hub username
+    }
+
     stages {
         stage('Clean') {
             steps {
@@ -8,13 +13,6 @@ pipeline {
             }
         }
 
-    environment {
-        DOCKER_IMAGE = 'jenkins-test:latest'
-        REGISTRY = 'docker.io/jmpires'  // Your Docker Hub username
-
-    }
-
-    stages {
         stage('Debug Env Vars') {
             steps {
                 sh 'echo DOCKER_IMAGE is: $DOCKER_IMAGE'
