@@ -7,12 +7,6 @@ pipeline {
         // DEPLOY = 'jmpires@localhost'  // SSH user for deployment (optional)
     }
 
-    stages {
-        stage('Clean') {
-            steps {
-                cleanWs()
-            }
-        }
 
         stage('Debug Env Vars') {
             steps {
