@@ -137,7 +137,7 @@ Settings > SSH and GPG keys > New SSH key
 Paste the public key there
 
 # Add Jenkins user to known_hosts so Jenkins can connect to GitHub via SSH
-sudo mkdir -p /var/lib/jenkins/.ssh
+
 sudo ssh-keyscan -t ed25519 github.com | sudo tee /var/lib/jenkins/.ssh/known_hosts
 sudo chown -R jenkins:jenkins /var/lib/jenkins/.ssh
 sudo chmod 700 /var/lib/jenkins/.ssh
