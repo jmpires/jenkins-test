@@ -29,7 +29,7 @@ Full Name: e.g. ubuntuLab
 email: jorgepires.email@gmail.com
 
 ## PlugIn Configuration
-+   Install also the following plugin to allow to view the deployment progress in graphical mode: 'Pipeline Stage View Plugin'
-    - Manage Jenkins -> Available plugins -> search for <Pipeline Stage View Plugin> -> checkbox Install -> Install
-    - Restart Jenkins in terminal with <sudo systemctl restart jenkins>
++   Install the following plugin to allow to view the deployment progress in graphical mode: 
+    - Manage Jenkins -> Available plugins -> Search for: ```Pipeline Stage View Plugin``` -> checkbox Install -> Install
+    - Restart Jenkins in terminal with ```sudo systemctl restart jenkins```
 
