@@ -1,38 +1,6 @@
-# Reference Links
-https://spacelift.io/blog/jenkins-tutorial?ref=dailydev
-https://mahira-technology.medium.com/mastering-jenkins-a-step-by-step-guide-to-ci-cd-implementation-bd1b5b7a31df
+# Jenkins aditional info
 
-
-# Simple command sequence to install Jenkins (compare it with the script in the current folder)
-
-sudo apt update
-sudo apt install openjdk-17-jdk -y
-wget -q -O - https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
- /usr/share/keyrings/jenkins-keyring.asc > /dev/null
-echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
- https://pkg.jenkins.io/debian binary/" | sudo tee \
- /etc/apt/sources.list.d/jenkins.list > /dev/null
-sudo apt update
-sudo apt install jenkins -y
-
-sudo systemctl enable jenkins
-sudo systemctl start jenkins
-sudo systemctl status jenkins
-
-sudo cat /var/lib/jenkins/secrets/initialAdminPassword
-
-+   Install also the following plugin to allow to view the deployment progress in graphical mode: <Pipeline Stage View Plugin>
-    - Manage Jenkins -> Available plugins -> search for <Pipeline Stage View Plugin> -> checkbox Install -> Install
-    - Restart Jenkins in terminal with <sudo systemctl restart jenkins>
-
-# Jenkins setup remarks
-
-Username: admin
-Password: xpto/xpto
-Full Name: e.g. ubuntuLab
-email: jorgepires.email@gmail.com
-
-# Nodes
+## Nodes
 A node is a Jenkins execution environment, and an agent is a node that Jenkins uses to run builds, tests, or deployments, usually separate from the controller.
 
 +   Build a new node: Manage Jenkins -> Nodes -> New Node -> <Node Name> -> <Permanent agent> -> Create
