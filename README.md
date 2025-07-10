@@ -6,6 +6,7 @@ https://mahira-technology.medium.com/mastering-jenkins-a-step-by-step-guide-to-c
 # Jenkins
 
 ## Install Jenkins
+```
 sudo apt update
 sudo apt install openjdk-17-jdk -y
 wget -q -O - https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
@@ -21,6 +22,7 @@ sudo systemctl start jenkins
 sudo systemctl status jenkins
 
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+```
 
 ## Jenkins Configuration
 Username: admin
