@@ -25,10 +25,12 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
 ## Jenkins Configuration
+```
 Username: admin
 Password: xpto/xpto
 Full Name: e.g. ubuntuLab
 email: jorgepires.email@gmail.com
+```
 
 ## PlugIn Configuration
 +   Install the following plugin to allow to view the deployment progress in graphical mode: 
