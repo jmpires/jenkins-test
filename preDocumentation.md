@@ -86,13 +86,7 @@ sudo -u jenkins docker --version
 
 
 
-# Configure global user name & email for local user and jenkins
-# For your VM user
-git config --global user.email "jorgepires.email@gmail.com"
-git config --global user.name "jmpires"
-# For Jenkins user
-sudo -u jenkins git config --global user.email "jorgepires.email@gmail.com"
-sudo -u jenkins git config --global user.name "jmpires"
+
 
 
 # Add ssh key to Github to allow to Jenkins connect

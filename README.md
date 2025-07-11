@@ -32,8 +32,18 @@ Full Name: e.g. ubuntuLab
 email: jorgepires.email@gmail.com
 ```
 
-## PlugIn Configuration
+### PlugIn Configuration
 +   Install the following plugin to allow to view the deployment progress in graphical mode: 
     - Manage Jenkins -> Available plugins -> Search for: ```Pipeline Stage View Plugin``` -> checkbox Install -> Install
     - Restart Jenkins in terminal with ```sudo systemctl restart jenkins```
 
+
+
+
+# Configure global user name & email for local user and jenkins
+# For your VM user
+git config --global user.email "jorgepires.email@gmail.com"
+git config --global user.name "jmpires"
+# For Jenkins user
+sudo -u jenkins git config --global user.email "jorgepires.email@gmail.com"
+sudo -u jenkins git config --global user.name "jmpires"
