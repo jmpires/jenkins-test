@@ -1,92 +1,3 @@
-# Jenkins aditional info
-
-## Nodes
-A node is a Jenkins execution environment, and an agent is a node that Jenkins uses to run builds, tests, or deployments, usually separate from the controller.
-
-+   Build a new node: Manage Jenkins -> Nodes -> New Node -> <Node Name> -> <Permanent agent> -> Create
-    - In the Remote root directory specify a directory, e.g.(could be done after create the new node but before run into the new agent):
-    sudo mkdir -p /opt/<folder=NodeName>
-    sudo chown -R <current linux user>:<current linux user> /opt/<folder=NodeName>
-    -> Save
-
-    - To activate a node (Remote root directory should be already created and usable):
-    click Node Name -> Status -> <copy the code accordingly the OS and execute it in a terminal window> 
-
-+ To use the new node in the Jenkins pipeline code:
-    pipeline {
-    agent { label '<Agent Name' }
-    ... }
-
-
-# Step-by-Step repo & pipeline creation
-mkdir jenkins-test && cd jenkins-test
-
-
-
-
-
-# TO Check and ADD Information:
-
-# Main Git Hub 4 [01] - Hands-On Continuous Integration and Automation with Jenkins
-https://github.com/cirulls/hands-on-jenkins
-
-https://github.com/cirulls/hands-on-jenkins/tree/master/section_2/exercises
-https://github.com/wakaleo/game-of-life
-
-https://medium.com/@marc_best/trigger-a-jenkins-build-from-a-github-push-b922468ef1ae
-https://kohsuke.org/2011/12/01/polling-must-die-triggering-jenkins-builds-from-a-git-hook/
-
-
-
-# TODO
-
-## Check original script and install it in the current VM's
-
-# Install Git
-sudo apt install git -y
-# Update package index
-sudo apt update
-# Install Docker dependencies
-sudo apt install -y ca-certificates curl gnupg lsb-release
-# Add Docker’s official GPG key
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
-  sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-# Set up Docker stable repository
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
-  https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-# Update package index again with Docker repo
-sudo apt update
-# Install Docker Engine and related tools
-sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-# Add Jenkins user to the docker group
-sudo usermod -aG docker jenkins
-# --- Optional: Apply group change without reboot ---
-# Stop Jenkins to avoid using old session with outdated groups
-sudo systemctl stop jenkins
-# Enable lingering for Jenkins user so we can log in as them
-sudo loginctl enable-linger jenkins
-# Switch to Jenkins user with a fresh login shell
-sudo su - jenkins <<EOF
-echo "Testing Docker access from fresh Jenkins shell..."
-docker --version
-EOF
-# Start Jenkins again with updated environment
-sudo systemctl start jenkins
-# Final check: verify Jenkins sees Docker
-sudo -u jenkins docker --version
-
-
-
-
-
-
-
-
-
-
 
 
 # Add ssh key to Github to allow to Jenkins connect
@@ -117,6 +28,35 @@ Username: user (same as the one you used above)
 Private Key: Choose "Enter directly", then paste the contents of:
 cat ~/.ssh/jenkins_deploy_key
 
+
+# -------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+# Jenkins aditional info
+
+## Nodes
+A node is a Jenkins execution environment, and an agent is a node that Jenkins uses to run builds, tests, or deployments, usually separate from the controller.
+
++   Build a new node: Manage Jenkins -> Nodes -> New Node -> <Node Name> -> <Permanent agent> -> Create
+    - In the Remote root directory specify a directory, e.g.(could be done after create the new node but before run into the new agent):
+    sudo mkdir -p /opt/<folder=NodeName>
+    sudo chown -R <current linux user>:<current linux user> /opt/<folder=NodeName>
+    -> Save
+
+    - To activate a node (Remote root directory should be already created and usable):
+    click Node Name -> Status -> <copy the code accordingly the OS and execute it in a terminal window> 
+
++ To use the new node in the Jenkins pipeline code:
+    pipeline {
+    agent { label '<Agent Name' }
+    ... }
+
+
+# Step-by-Step repo & pipeline creation
+mkdir jenkins-test && cd jenkins-test
+
+
+# TODO
 
 1. A universal email account for my labs;
 2. Improve current script in folder;
