@@ -7,7 +7,6 @@ https://medium.com/@marc_best/trigger-a-jenkins-build-from-a-github-push-b922468
 
 # Jenkins
 
-
 ## Install Jenkins
 ```
 sudo apt update
@@ -28,6 +27,7 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
 ## Jenkins Configuration
+
 ### Defining Username/Password/eMail
 ```
 Username: admin
